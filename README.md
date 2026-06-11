@@ -13,8 +13,8 @@ Este projeto contém testes automatizados para validação dos endpoints de usu�
 ### 1. Clonar o repositório
 
 ```bash
-git clone <url-do-repositorio>
-cd <nome-do-repositorio>
+git clone https://github.com/nimithileth/bootcampQA/blob/main/test_serverRestUsuarios.py
+cd bootcampQA
 ```
 
 ### 2. Criar um ambiente virtual (opcional, mas recomendado)
