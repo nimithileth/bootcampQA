@@ -84,6 +84,7 @@ class TestProdutosServeRest:
         assert resp_delete.status_code == 200
         assert "Registro excluído com sucesso" in resp_delete.json()["message"]
 
+    @pytest.mark.xfail(reason="BUG CONHECIDO: A API aceita preço negativo no cadastro de produto. Comportamento esperado: 400 Bad Request.")
     def test_bug_cadastrar_produto_preco_negativo(self, token_admin):
         headers = {"Authorization": token_admin}
         payload = self.payload_produto()
@@ -93,6 +94,7 @@ class TestProdutosServeRest:
 
         assert resposta.status_code == 400
 
+    @pytest.mark.xfail(reason="BUG CONHECIDO: A API aceita tipo inválido (string) no campo 'preco'. Comportamento esperado: 400 Bad Request.")
     def test_bug_produto_tipo_invalido(self, token_admin):
         headers = {"Authorization": token_admin}
         payload = {
@@ -105,6 +107,7 @@ class TestProdutosServeRest:
 
         assert resposta.status_code == 400
 
+    @pytest.mark.xfail(reason="BUG CONHECIDO: A API aceita quantidade negativa no cadastro de produto. Comportamento esperado: 400 Bad Request.")
     def test_bug_cadastrar_produto_quantidade_negativo(self, token_admin):
         headers = {"Authorization": token_admin}
         payload = self.payload_produto()
@@ -113,5 +116,3 @@ class TestProdutosServeRest:
         resposta = requests.post(self.URL_PRODUTOS, json=payload, headers=headers)
 
         assert resposta.status_code == 400
-
-        

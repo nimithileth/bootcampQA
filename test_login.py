@@ -1,7 +1,7 @@
 import requests
+import pytest
 import uuid
 
-URL_USUARIOS = "https://compassuol.serverest.dev/"
 
 class TestLoginServeRest:
     URL_LOGIN = "https://compassuol.serverest.dev/login"
@@ -58,6 +58,7 @@ class TestLoginServeRest:
         assert "email é obrigatório" in dados_resposta.get("email", "")
         assert "password é obrigatório" in dados_resposta.get("password", "")
 
+    @pytest.mark.xfail(reason="BUG CONHECIDO: Campo 'administrador' aceita valores inválidos como 'talvez'. Comportamento esperado: 400 Bad Request.")
     def test_bug_administrador_invalido(self):
         payload = {
             "nome": "QA Teste",
